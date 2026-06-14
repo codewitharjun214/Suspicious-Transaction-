@@ -1,0 +1,46 @@
+﻿# Root ignore file for deployment
+node_modules/
+**/node_modules/
+.DS_Store
+legacy-python/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.env
+.env.*
+.vscode/
+.idea/
+
+
+# Build outputs
+dist/
+build/
+/.parcel-cache/
+
+# Local env files
+.env.local
+.env.*.local
+
+# Vercel/Netlify
+.vercel/
+.vercel/**/*
+.netlify/
+
+# Cache, coverage
+.cache/
+coverage/
+
+# Secrets and keys
+*.pem
+*.key
+API_KEYS*
+
+# Misc
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.env.local
+
