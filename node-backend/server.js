@@ -91,22 +91,31 @@ app.get('/coingecko', async (req, res) => {
   app.use(bodyParser.json());
   
   app.use("/", router);
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-const server = app.listen(PORT, () => {
+app.use("/", router);
+
+// Start server only in local development
+if (!process.env.VERCEL) {
+  const server = app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
-});
+  });
 
-server.on("error", (error) => {
+  server.on("error", (error) => {
     if (error.code === "EADDRINUSE") {
-        console.error(
-            `Port ${PORT} is already in use. Stop the process using that port or run "npx kill-port ${PORT}" and try again.`
-        );
-        process.exit(1);
+      console.error(
+        `Port ${PORT} is already in use. Stop the process using that port or run "npx kill-port ${PORT}" and try again.`
+      );
+      process.exit(1);
     }
+
     console.error("Server error:", error);
     process.exit(1);
-});
+  });
+}
 
-
+// Export Express app for Vercel
+export default app;
 
     
