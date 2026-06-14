@@ -3,7 +3,7 @@
   "outputDirectory": "dist",
   "framework": "vite",
   "env": {
-    "VITE_API_URL": "@vite_api_url",
-    "VITE_GRAPHQL_URL": "@vite_graphql_url"
+    "VITE_API_URL": "https://suspicious-transaction-backend.vercel.app",
+    "VITE_GRAPHQL_URL": "https://suspicious-transaction-backend.vercel.app/graphql"
   }
 }
