@@ -24,15 +24,36 @@ app.use(cors({
 
 const startApp = async () => {
   try {
+    console.log("STEP 1 - Starting");
+
+    console.log("STEP 2 - Testing Neo4j ETH");
     await verifyNeo4jConnections();
+    console.log("STEP 2 SUCCESS");
+
+    console.log("STEP 3 - Testing Neo4j BTC");
     await verifyBtcNeo4jConnection();
+    console.log("STEP 3 SUCCESS");
+
+    console.log("STEP 4 - Initializing GraphQL ETH");
     await initializeGraphqlServer();
+    console.log("STEP 4 SUCCESS");
+
+    console.log("STEP 5 - Initializing GraphQL BTC");
     await initializeBtcNeo4jServer();
+    console.log("STEP 5 SUCCESS");
+
+    console.log("ALL INITIALIZATION COMPLETE");
   } catch (err) {
-    console.error('Startup failed:', err);
-    process.exit(1);
+    console.error("STARTUP ERROR:");
+    console.error(err);
+    console.error(err?.message);
+    console.error(err?.stack);
+
+    throw err;
   }
 };
+
+startApp();
 
 startApp();
 // 0x307834c338866516DB9f5784aBc4C43484a8363a
@@ -86,11 +107,6 @@ app.get('/coingecko', async (req, res) => {
   }
 });
 
-  
-  app.use(bodyParser.urlencoded({ extended: true }));
-  app.use(bodyParser.json());
-  
-  app.use("/", router);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
