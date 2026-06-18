@@ -27,7 +27,7 @@ const Login = () => {
       return;
     }
 
-    setError("Invalid credentials. Use user: arjun and password: 7507.");
+    setError("Invalid credentials.");
   };
 
   return (
